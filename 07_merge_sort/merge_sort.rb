@@ -1,17 +1,15 @@
 def merge_sort(arr)
-    if arr.length <= 2
-        return arr
-    else
-        a = merge_sort(arr.slice!(0..arr.length/2))
-        b = merge_sort(arr)
-    end
+    return arr if arr.length < 2
+    
+    a = merge_sort(arr[0...arr.length/2])
+    b = merge_sort(arr[arr.length/2..-1])
     result = []
-    for i in 1..arr.length
+    until a.empty? || b.empty?
         if a[0] <= b[0]
             result << a.shift
         else
             result << b.shift
         end
     end
-    return result
+    result + a + b
 end
